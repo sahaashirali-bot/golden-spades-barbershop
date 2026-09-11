@@ -3,13 +3,13 @@ import { createAnonClient } from "@/lib/supabase/anon";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const serviceId = searchParams.get("serviceId");
+  const durationMinutes = Number(searchParams.get("durationMinutes"));
   const date = searchParams.get("date");
   const barberId = searchParams.get("barberId");
 
-  if (!serviceId || !date || !barberId) {
+  if (!durationMinutes || durationMinutes <= 0 || !date || !barberId) {
     return NextResponse.json(
-      { error: "serviceId, date, and barberId are required" },
+      { error: "durationMinutes, date, and barberId are required" },
       { status: 400 }
     );
   }
@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
     barberIds.map(async (id) => {
       const { data, error } = await supabase.rpc("get_open_slots", {
         p_barber_id: id,
-        p_service_id: serviceId,
+        p_duration_minutes: durationMinutes,
         p_date: date,
       });
       if (error) throw error;

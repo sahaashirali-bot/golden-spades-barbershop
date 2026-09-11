@@ -8,19 +8,19 @@ export default function AdminLayout({ children }: LayoutProps<"/admin">) {
         <nav className="flex gap-6">
           <Link
             href="/admin"
-            className="font-display text-sm tracking-widest text-onyx/70 hover:text-gold"
+            className="font-display text-sm tracking-widest text-onyx/70 hover:text-gold-ink"
           >
             Dashboard
           </Link>
           <Link
             href="/admin/bookings"
-            className="font-display text-sm tracking-widest text-onyx/70 hover:text-gold"
+            className="font-display text-sm tracking-widest text-onyx/70 hover:text-gold-ink"
           >
             Bookings
           </Link>
           <Link
             href="/admin/blocked-times"
-            className="font-display text-sm tracking-widest text-onyx/70 hover:text-gold"
+            className="font-display text-sm tracking-widest text-onyx/70 hover:text-gold-ink"
           >
             Time Off
           </Link>

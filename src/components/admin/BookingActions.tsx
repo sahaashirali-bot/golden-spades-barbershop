@@ -50,7 +50,7 @@ export function BookingActions({
         <button
           disabled={isPending}
           onClick={() => set("confirmed")}
-          className="rounded-full border border-gold px-3 py-1.5 text-xs uppercase tracking-wider text-gold hover:bg-gold/10 disabled:opacity-50"
+          className="rounded-full border border-gold px-3 py-1.5 text-xs uppercase tracking-wider text-gold-ink hover:bg-gold/10 disabled:opacity-50"
         >
           Force Confirm
         </button>

@@ -12,7 +12,7 @@ export default async function AdminDashboardPage() {
 
   const { data: todaysBookings } = await supabase
     .from("bookings")
-    .select("*, barbers(name), services(name)")
+    .select("*, barbers(name), booking_services(services(name))")
     .gte("start_at", startOfToday.toISOString())
     .lte("start_at", endOfToday.toISOString())
     .neq("status", "cancelled")
@@ -52,8 +52,14 @@ export default async function AdminDashboardPage() {
               <div>
                 <p className="font-display text-onyx">
                   {formatSlotTime(b.start_at)} —{" "}
-                  {(b as unknown as { services: { name: string } }).services
-                    ?.name}
+                  {(
+                    b as unknown as {
+                      booking_services: { services: { name: string } }[];
+                    }
+                  ).booking_services
+                    ?.map((bs) => bs.services?.name)
+                    .filter(Boolean)
+                    .join(", ")}
                 </p>
                 <p className="text-xs uppercase tracking-wider text-sable">
                   {b.customer_name} · with{" "}
@@ -67,7 +73,7 @@ export default async function AdminDashboardPage() {
                     b.status === "confirmed"
                       ? "bg-felt/15 text-felt"
                       : b.status === "pending_payment"
-                        ? "bg-gold/20 text-gold"
+                        ? "bg-gold/20 text-gold-ink"
                         : "bg-cream-dim text-sable"
                   }`}
                 >
@@ -84,7 +90,7 @@ export default async function AdminDashboardPage() {
 
       <Link
         href="/admin/bookings"
-        className="mt-6 inline-block text-sm text-gold hover:underline"
+        className="mt-6 inline-block text-sm text-gold-ink hover:underline"
       >
         View all bookings →
       </Link>

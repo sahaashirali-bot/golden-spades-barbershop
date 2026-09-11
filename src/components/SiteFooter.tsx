@@ -62,7 +62,7 @@ export function SiteFooter() {
             {SHOP.hours.map((h) => (
               <li key={h.day} className="flex justify-between gap-4">
                 <span>{h.day}</span>
-                <span className="text-cream/50">{h.hours}</span>
+                <span className="text-cream/70">{h.hours}</span>
               </li>
             ))}
           </ul>
@@ -70,13 +70,13 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-cream/10">
-        <div className="mx-auto max-w-6xl px-4 py-6 text-xs text-cream/50 sm:px-6">
-          <p className="max-w-3xl">{SHOP.cancellationPolicy}</p>
-          <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
+        <div className="mx-auto max-w-6xl px-4 py-6 text-sm text-cream/70 sm:px-6">
+          <p className="max-w-md">{SHOP.cancellationPolicy}</p>
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-xs text-cream/70">
             <span>
               © {new Date().getFullYear()} {SHOP.name}
             </span>
-            <Link href="/admin/login" className="hover:text-cream/80">
+            <Link href="/admin/login" className="hover:text-cream">
               Staff Login
             </Link>
           </div>

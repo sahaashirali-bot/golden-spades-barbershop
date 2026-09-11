@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-11T00:00:00Z",
+  "title": "Design System: Golden Spades Barbershop",
+  "extensions": {
+    "colorMeta": {
+      "gold": { "role": "primary", "displayName": "Foil Gold", "canonical": "#b8863c" },
+      "gold-bright": { "role": "primary", "displayName": "Bright Gold", "canonical": "#e3bd6c" },
+      "felt": { "role": "secondary", "displayName": "Deep Emerald Felt", "canonical": "#0f3d2e" },
+      "felt-dark": { "role": "secondary", "displayName": "Felt Dark", "canonical": "#082720" },
+      "onyx": { "role": "neutral", "displayName": "Warm Onyx Ink", "canonical": "#1c1710" },
+      "sable": { "role": "neutral", "displayName": "Sable", "canonical": "#59503e" },
+      "cream": { "role": "neutral", "displayName": "Card-Stock Cream", "canonical": "#eaddbc" },
+      "cream-dim": { "role": "neutral", "displayName": "Cream Dim", "canonical": "#dac795" },
+      "ivory": { "role": "neutral", "displayName": "Ivory Card Surface", "canonical": "#fdf8ea" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headlines, section titles, card titles, brand-voice CTA labels." },
+      "body": { "displayName": "Body", "purpose": "Paragraph copy, form labels, general reading text." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ribbon-scroll", "value": "translateX(0) to translateX(-50%), 32s linear infinite", "purpose": "Ticker/ribbon marquee under the hero." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button (Gold)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main conversion CTA (Book Your Cut, Pay & Book).",
+      "html": "<button class=\"ds-btn-primary\">Book Your Cut</button>",
+      "css": ".ds-btn-primary { background: #b8863c; color: #1c1710; border-radius: 9999px; padding: 1rem 2rem; font-family: 'Playfair Display', ui-serif, serif; font-style: italic; font-size: 1.125rem; border: none; transition: background 0.2s; } .ds-btn-primary:hover { background: #e3bd6c; } .ds-btn-primary:focus-visible { outline: 2px solid #1c1710; outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button (Felt)",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Persistent header/footer Book Now and in-flow Continue actions.",
+      "html": "<button class=\"ds-btn-secondary\">Book Now</button>",
+      "css": ".ds-btn-secondary { background: #0f3d2e; color: #eaddbc; border-radius: 9999px; padding: 0.625rem 1.5rem; font-family: 'Playfair Display', ui-serif, serif; font-style: italic; font-size: 0.875rem; border: none; transition: background 0.2s; } .ds-btn-secondary:hover { background: #082720; }"
+    },
+    {
+      "name": "Card (at rest)",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Base panel used for service rows, barber cards, review cards, gallery tiles.",
+      "html": "<div class=\"ds-card\"><span class=\"ds-pip\">&#9824;</span><p class=\"ds-card-title\">Fade</p><p class=\"ds-card-sub\">30 min</p></div>",
+      "css": ".ds-card { position: relative; background: #fdf8ea; border: 1px solid rgba(184,134,60,0.35); border-radius: 1.25rem; padding: 1rem; } .ds-pip { position: absolute; top: 0.85rem; left: 1rem; font-family: 'Playfair Display', ui-serif, serif; font-size: 0.8rem; color: #b8863c; opacity: 0.8; } .ds-card-title { font-family: 'Playfair Display', ui-serif, serif; color: #1c1710; margin: 0; } .ds-card-sub { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #59503e; margin: 0.25rem 0 0; }"
+    },
+    {
+      "name": "Card (selected)",
+      "kind": "card",
+      "refersTo": "card-selected",
+      "description": "Booking-wizard option card in its selected state: border + fill + checkmark badge together, never border alone.",
+      "html": "<div class=\"ds-card ds-card-selected\"><span class=\"ds-check\">&#10003;</span><p class=\"ds-card-title\">Fade</p><p class=\"ds-card-sub\">30 min</p></div>",
+      "css": ".ds-card-selected { border: 2px solid #b8863c; background: rgba(184,134,60,0.15); box-shadow: 0 0 0 3px rgba(184,134,60,0.18); } .ds-check { position: absolute; top: -0.5rem; right: -0.5rem; width: 1.75rem; height: 1.75rem; border-radius: 9999px; border: 2px solid #fdf8ea; background: #b8863c; color: #1c1710; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Text input used across the booking wizard.",
+      "html": "<input class=\"ds-input\" placeholder=\"Full name\" />",
+      "css": ".ds-input { width: 100%; background: #fdf8ea; border: 1px solid rgba(184,134,60,0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; color: #1c1710; font-family: Jost, ui-sans-serif, system-ui, sans-serif; } .ds-input::placeholder { color: #59503e; } .ds-input:focus { outline: none; border-color: #b8863c; }"
+    },
+    {
+      "name": "Primary Navigation",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Sticky translucent header with gold-rule divider.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" class=\"ds-nav-link\">Services</a><a href=\"#\" class=\"ds-nav-link ds-nav-link-active\">Barbers</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 2rem; background: rgba(234,221,188,0.95); backdrop-filter: blur(8px); padding: 0.75rem 1rem; } .ds-nav-link { font-family: Jost, ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; color: rgba(28,23,16,0.7); text-decoration: none; transition: color 0.2s; } .ds-nav-link:hover, .ds-nav-link-active { color: #b8863c; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Golden Table",
+    "overview": "Golden Spades reads as a card table dressed for an upscale night: cream card-stock paper, deep emerald felt, and warm gold foil, with a serif marquee typeface standing in for the pit boss's signage and a clean grotesque carrying everything you actually have to read. The system is deliberately warm and daytime-legible rather than nocturnal-neon-casino -- it is a real neighborhood barbershop borrowing the iconography of cards and chips (suit pips, 'Ace Experience,' 'Royal Flush' package names), not a Vegas pastiche. It is the confirmed opposite number to the client's other shop, Scissorhands Barbershop, whose system is dark red/black grunge with a spinning barber-pole motif and a bold condensed display face -- nothing in that system may bleed into this one.\n\nFlat by construction: no drop shadows anywhere. Depth comes from a thin gold-foil frame around every panel and from a small suit-pip mark tucked in a card-frame's corner, echoing the index pip on a real playing card. Selection and emphasis are never conveyed by a border alone -- a defect the client explicitly reported and that this system now treats as an invariant: a selected state gets a visibly thicker gold border, a solid gold-tinted fill, and a small gold checkmark badge.",
+    "keyCharacteristics": [
+      "Warm, deepened cream/tan base with deep emerald felt bands for header/footer/hero contrast",
+      "Serif-italic display type (Playfair Display) for headings and CTA labels, clean sans (Jost) for body text",
+      "Rounded playing-card panels (1.25rem corners) with a slim translucent gold frame, never a drop shadow",
+      "Small suit-pip glyphs as the system's one recurring decorative signature",
+      "Pill-shaped buttons; gold fill for the primary action, felt-green fill for the secondary action",
+      "Selection state always shows all three signals together: border, fill, and badge"
+    ],
+    "rules": [
+      { "name": "The Single Loud Color Rule", "body": "Gold is the only saturated color in the system; every other hue stays muted, which is what makes gold register as premium instead of noisy.", "section": "colors" },
+      { "name": "The No-Shadow Rule", "body": "This system never uses box-shadow for elevation. A card reads as raised because Ivory is lighter than the Cream/Cream-Dim it sits on and is framed by a gold border. The one exception is the selection glow ring, which is a state signal, not ambient elevation.", "section": "elevation" },
+      { "name": "The Three-Signal Rule", "body": "A selected interactive card must show all three of border-weight, fill, and badge together, never border alone. This was a confirmed defect (users could not tell what they had selected) and regressing to border-only is a functional bug, not a style choice.", "section": "components" },
+      { "name": "The Italic-for-Voice Rule", "body": "Italic Playfair Display marks a line as the brand speaking (eyebrow taglines, button labels, footer headings) rather than describing content. Section titles and card titles stay upright.", "section": "typography" }
+    ],
+    "dos": [
+      "Do keep gold as the only saturated color in the system; every other hue stays muted.",
+      "Do signal a selected/active interactive state with border-weight, fill, and badge together.",
+      "Do use Playfair Display italic for brand-voice moments and upright Playfair Display for section/card titles.",
+      "Do keep every card-style panel flat with a gold-tinted border instead of a shadow."
+    ],
+    "donts": [
+      "Don't introduce drop shadows for elevation anywhere in this system.",
+      "Don't borrow Scissorhands' visual vocabulary: no dark red/black grunge palette, no Anton display face, no spinning barber-pole stripe, no diagonal-cut sharp corners, no grain texture.",
+      "Don't rely on a border-color change alone to indicate selection.",
+      "Don't add a second saturated accent color; reach for a neutral or a Gold variant first."
+    ]
+  }
+}

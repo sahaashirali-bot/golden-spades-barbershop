@@ -35,11 +35,13 @@ export default async function HomePage() {
               <p className="font-display italic text-lg tracking-wide text-gold-bright">
                 Houston&apos;s Golden Chair
               </p>
+
               <h1 className="mt-4 font-display text-5xl leading-[1.05] text-cream sm:text-6xl md:text-7xl">
                 Sharp Cuts,
                 <br />
                 <span className="text-gold-bright">Royal</span> Treatment.
               </h1>
+
               <p className="mt-6 max-w-md text-base text-cream/75">
                 Precision fades, hot towel shaves, and freestyle braids from
                 Lupe — rated 5.0 by Houston. Pick a service, pick a time, and
@@ -79,8 +81,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Ribbon ticker */}
-      <div className="overflow-hidden bg-gold py-2.5">
+      {/* Ribbon ticker — decorative; the real info lives in the sections around it */}
+      <div className="overflow-hidden bg-gold py-2.5" aria-hidden="true">
         <div className="ribbon-track">
           {[...RIBBON_ITEMS, ...RIBBON_ITEMS].map((item, i) => (
             <span
@@ -97,21 +99,21 @@ export default async function HomePage() {
       <section className="border-b border-gold/15 bg-cream-dim">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-10 sm:grid-cols-3 sm:px-6">
           <div className="flex items-center gap-4">
-            <Star className="shrink-0 text-gold" size={28} />
+            <Star className="shrink-0 text-gold-ink" size={28} />
             <div>
               <p className="font-display text-lg text-onyx">5.0 Rating</p>
               <p className="text-sm text-sable">12 Google reviews</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <Clock className="shrink-0 text-gold" size={28} />
+            <Clock className="shrink-0 text-gold-ink" size={28} />
             <div>
               <p className="font-display text-lg text-onyx">6 Days</p>
               <p className="text-sm text-sable">Tue–Sat, closed Sun &amp; Mon</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <MapPin className="shrink-0 text-gold" size={28} />
+            <MapPin className="shrink-0 text-gold-ink" size={28} />
             <div>
               <p className="font-display text-lg text-onyx">Houston</p>
               <p className="text-sm text-sable">El Camino Real, Arbor Square</p>
@@ -128,7 +130,7 @@ export default async function HomePage() {
           </h2>
           <Link
             href="/services"
-            className="text-sm font-medium uppercase tracking-wider text-gold hover:underline"
+            className="text-sm font-medium uppercase tracking-wider text-gold-ink hover:underline"
           >
             Full price list →
           </Link>

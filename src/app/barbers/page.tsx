@@ -12,7 +12,7 @@ export default async function BarbersPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-      <p className="font-display italic text-lg text-gold">The Chair</p>
+      <p className="font-display italic text-lg text-gold-ink">The Chair</p>
       <h1 className="mt-3 font-display text-5xl text-onyx sm:text-6xl">
         Meet Your Barber
       </h1>

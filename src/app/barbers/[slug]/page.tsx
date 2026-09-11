@@ -40,7 +40,7 @@ export default async function BarberPage({
           <h1 className="font-display text-4xl text-onyx sm:text-5xl">
             {barber.name}
           </h1>
-          <p className="mt-1 text-sm uppercase tracking-wider text-gold">
+          <p className="mt-1 text-sm uppercase tracking-wider text-gold-ink">
             {barber.title}
           </p>
           {barber.rating ? (

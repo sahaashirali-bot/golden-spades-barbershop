@@ -9,7 +9,7 @@ export function ServiceRow({ service }: { service: Service }) {
       className="group flex items-center justify-between gap-4 rounded-xl border-b border-gold/15 px-3 py-5 transition hover:bg-cream-dim"
     >
       <div>
-        <h3 className="font-display text-lg text-onyx group-hover:text-gold">
+        <h3 className="font-display text-lg text-onyx group-hover:text-gold-ink">
           {service.name}
         </h3>
         {service.description && (
@@ -21,7 +21,7 @@ export function ServiceRow({ service }: { service: Service }) {
           {formatDuration(service.duration_minutes)}
         </p>
       </div>
-      <div className="shrink-0 font-display text-2xl text-gold">
+      <div className="shrink-0 font-display text-2xl text-gold-ink">
         {formatMoney(service.price_cents)}
       </div>
     </Link>

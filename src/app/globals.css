@@ -10,6 +10,10 @@
   --color-sable: #59503e;
   --color-gold: #b8863c;
   --color-gold-bright: #e3bd6c;
+  /* Deep bronze step of gold, for text/icons set directly on cream/ivory
+     surfaces — the base gold (#b8863c) is only ~2.4:1 against cream and
+     fails WCAG AA there; gold-ink hits 4.9:1+ while staying the same hue. */
+  --color-gold-ink: #654a21;
 }
 
 @theme inline {
@@ -22,6 +26,7 @@
   --color-sable: var(--color-sable);
   --color-gold: var(--color-gold);
   --color-gold-bright: var(--color-gold-bright);
+  --color-gold-ink: var(--color-gold-ink);
   --font-display: var(--font-playfair);
   --font-body: var(--font-jost);
 }

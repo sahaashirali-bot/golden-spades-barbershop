@@ -14,7 +14,7 @@ export function ReviewCard({ review }: { review: Review }) {
       <div className="mt-6 border-t border-gold/15 pt-3">
         <p className="font-display text-onyx">{review.author_name}</p>
         {review.barber_name && (
-          <p className="text-xs uppercase tracking-wider text-gold">
+          <p className="text-xs uppercase tracking-wider text-gold-ink">
             Client of {review.barber_name}
           </p>
         )}

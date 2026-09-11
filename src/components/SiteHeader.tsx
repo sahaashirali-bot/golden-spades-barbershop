@@ -34,7 +34,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium uppercase tracking-wide text-onyx/70 transition hover:text-gold"
+              className="text-sm font-medium uppercase tracking-wide text-onyx/70 transition hover:text-gold-ink"
             >
               {item.label}
             </Link>

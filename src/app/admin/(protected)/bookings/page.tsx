@@ -1,13 +1,13 @@
 import { createClient } from "@/lib/supabase/server";
 import { formatMoney, formatSlotDate, formatSlotTime } from "@/lib/format";
 import { BookingActions } from "@/components/admin/BookingActions";
-import type { Barber, BookingStatus, Service } from "@/lib/types";
+import type { Barber, BookingStatus } from "@/lib/types";
 
 export default async function AdminBookingsPage() {
   const supabase = await createClient();
   const { data: bookings } = await supabase
     .from("bookings")
-    .select("*, barbers(name), services(name)")
+    .select("*, barbers(name), booking_services(services(name))")
     .order("start_at", { ascending: false })
     .limit(200);
 
@@ -32,8 +32,14 @@ export default async function AdminBookingsPage() {
             {bookings?.map((b) => {
               const barberName = (b as unknown as { barbers: Barber }).barbers
                 ?.name;
-              const serviceName = (b as unknown as { services: Service })
-                .services?.name;
+              const serviceNames = (
+                b as unknown as {
+                  booking_services: { services: { name: string } }[];
+                }
+              ).booking_services
+                ?.map((bs) => bs.services?.name)
+                .filter(Boolean)
+                .join(", ");
               return (
                 <tr key={b.id}>
                   <td className="py-3 pr-4 text-onyx/70">
@@ -47,7 +53,7 @@ export default async function AdminBookingsPage() {
                     <p className="text-onyx">{b.customer_name}</p>
                     <p className="text-xs text-sable">{b.customer_phone}</p>
                   </td>
-                  <td className="py-3 pr-4 text-onyx/70">{serviceName}</td>
+                  <td className="py-3 pr-4 text-onyx/70">{serviceNames}</td>
                   <td className="py-3 pr-4 text-onyx/70">{barberName}</td>
                   <td className="py-3 pr-4 font-display text-onyx">
                     {formatMoney(b.total_amount_cents)}
@@ -74,7 +80,7 @@ export default async function AdminBookingsPage() {
 function StatusPill({ status }: { status: BookingStatus }) {
   const styles: Record<BookingStatus, string> = {
     confirmed: "bg-felt/15 text-felt",
-    pending_payment: "bg-gold/20 text-gold",
+    pending_payment: "bg-gold/20 text-gold-ink",
     completed: "bg-sable/20 text-onyx/70",
     cancelled: "bg-cream-dim text-sable line-through",
     no_show: "bg-cream-dim text-sable",

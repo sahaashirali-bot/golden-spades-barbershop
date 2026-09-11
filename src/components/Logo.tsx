@@ -41,7 +41,7 @@ export function LogoWordmark({ className }: { className?: string }) {
       <span className="font-display text-2xl italic leading-none block text-onyx">
         Golden Spades
       </span>
-      <span className="text-[0.6rem] tracking-[0.35em] text-gold uppercase block">
+      <span className="text-xs tracking-[0.35em] text-gold-ink uppercase block">
         Barbershop
       </span>
     </div>

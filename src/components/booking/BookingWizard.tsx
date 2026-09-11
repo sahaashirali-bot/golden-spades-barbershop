@@ -30,12 +30,18 @@ export function BookingWizard({
 }) {
   const [step, setStep] = useState(0);
 
-  const [serviceId, setServiceId] = useState<string | undefined>(
-    initialServiceId
+  const [serviceIds, setServiceIds] = useState<string[]>(
+    initialServiceId ? [initialServiceId] : []
   );
   const [barberId, setBarberId] = useState<string | undefined>(
     initialBarberId
   );
+
+  function toggleService(id: string) {
+    setServiceIds((prev) =>
+      prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]
+    );
+  }
 
   const dateOptions = useMemo(() => {
     const today = todayISODate();
@@ -58,27 +64,35 @@ export function BookingWizard({
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const service = services.find((s) => s.id === serviceId);
+  const selectedServices = services.filter((s) => serviceIds.includes(s.id));
+  const totalDurationMinutes = selectedServices.reduce(
+    (sum, s) => sum + s.duration_minutes,
+    0
+  );
   const barber = barberId ? barbers.find((b) => b.id === barberId) : undefined;
 
   useEffect(() => {
-    if (!serviceId || !barberId || step !== 2) return;
+    if (serviceIds.length === 0 || !barberId || step !== 2) return;
     setSlotsLoading(true);
     setSelectedSlot(null);
     fetch(
-      `/api/slots?serviceId=${serviceId}&barberId=${barberId}&date=${date}`
+      `/api/slots?durationMinutes=${totalDurationMinutes}&barberId=${barberId}&date=${date}`
     )
       .then((r) => r.json())
       .then((data) => setSlots(data.slots ?? []))
       .finally(() => setSlotsLoading(false));
-  }, [serviceId, barberId, date, step]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [serviceIds.join(","), barberId, date, step]);
 
+  const servicesCents = selectedServices.reduce(
+    (sum, s) => sum + s.price_cents,
+    0
+  );
   const totalCents =
-    (service?.price_cents ?? 0) +
-    (paymentMethod === "online" ? SHOP.cardFeeCents : 0);
+    servicesCents + (paymentMethod === "online" ? SHOP.cardFeeCents : 0);
 
   async function handleSubmit() {
-    if (!service || !selectedSlot) return;
+    if (selectedServices.length === 0 || !selectedSlot) return;
     setSubmitting(true);
     setSubmitError(null);
     try {
@@ -87,7 +101,7 @@ export function BookingWizard({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           barberId: selectedSlot.barberId,
-          serviceId: service.id,
+          serviceIds,
           start: selectedSlot.start,
           customerName: name,
           customerEmail: email,
@@ -111,7 +125,7 @@ export function BookingWizard({
   }
 
   const canContinue = [
-    !!serviceId,
+    serviceIds.length > 0,
     !!barberId,
     !!selectedSlot,
     name.trim().length > 0 && email.includes("@") && phone.trim().length >= 7,
@@ -130,7 +144,7 @@ export function BookingWizard({
                   i < step
                     ? "border-gold bg-gold text-onyx"
                     : i === step
-                      ? "border-gold text-gold"
+                      ? "border-gold text-gold-ink"
                       : "border-gold/20 text-sable"
                 }`}
               >
@@ -153,16 +167,20 @@ export function BookingWizard({
         {/* Step 0: Service */}
         {step === 0 && (
           <div>
-            <h2 className="font-display text-3xl text-onyx">
-              Pick Your Service
-            </h2>
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <h2 className="font-display text-3xl text-onyx">
+                Pick Your Services
+              </h2>
+              <p className="text-sm text-sable">Select as many as you like</p>
+            </div>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               {services.map((s) => (
                 <button
                   key={s.id}
-                  onClick={() => setServiceId(s.id)}
-                  className={`card-frame flex items-center justify-between gap-3 bg-ivory p-4 text-left transition ${
-                    serviceId === s.id
+                  onClick={() => toggleService(s.id)}
+                  aria-pressed={serviceIds.includes(s.id)}
+                  className={`card-frame relative flex items-center justify-between gap-3 bg-ivory p-4 text-left transition ${
+                    serviceIds.includes(s.id)
                       ? "border-2 border-gold bg-gold/15 shadow-[0_0_0_3px_rgba(184,134,60,0.18)]"
                       : "hover:border-gold/60"
                   }`}
@@ -173,10 +191,10 @@ export function BookingWizard({
                       {formatDuration(s.duration_minutes)}
                     </p>
                   </div>
-                  <span className="shrink-0 font-display text-xl text-gold">
+                  <span className="shrink-0 font-display text-xl text-gold-ink">
                     {formatMoney(s.price_cents)}
                   </span>
-                  {serviceId === s.id && (
+                  {serviceIds.includes(s.id) && (
                     <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-ivory bg-gold text-onyx">
                       <Check size={14} strokeWidth={3} />
                     </span>
@@ -184,6 +202,18 @@ export function BookingWizard({
                 </button>
               ))}
             </div>
+            {selectedServices.length > 0 && (
+              <div className="card-frame mt-6 flex flex-wrap items-center justify-between gap-3 bg-cream-dim p-4">
+                <p className="text-sm text-onyx">
+                  {selectedServices.length} service
+                  {selectedServices.length > 1 ? "s" : ""} selected ·{" "}
+                  {formatDuration(totalDurationMinutes)}
+                </p>
+                <p className="font-display text-xl text-gold-ink">
+                  {formatMoney(servicesCents)}
+                </p>
+              </div>
+            )}
           </div>
         )}
 
@@ -203,7 +233,7 @@ export function BookingWizard({
                 }`}
               >
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/25 bg-cream">
-                  <Users size={22} className="text-gold" />
+                  <Users size={22} className="text-gold-ink" />
                 </div>
                 <div>
                   <p className="font-display text-onyx">No Preference</p>
@@ -226,7 +256,7 @@ export function BookingWizard({
                   }`}
                 >
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/25 bg-cream">
-                    <Scissors size={20} className="text-gold" />
+                    <Scissors size={20} className="text-gold-ink" />
                   </div>
                   <div>
                     <p className="font-display text-onyx">{b.name}</p>
@@ -327,7 +357,7 @@ export function BookingWizard({
               />
 
               <div className="pt-2">
-                <p className="font-display italic text-lg text-gold">
+                <p className="font-display italic text-lg text-gold-ink">
                   Payment
                 </p>
                 <div className="mt-3 grid gap-3 sm:grid-cols-2">
@@ -375,13 +405,16 @@ export function BookingWizard({
         )}
 
         {/* Step 4: Confirm */}
-        {step === 4 && service && selectedSlot && (
+        {step === 4 && selectedServices.length > 0 && selectedSlot && (
           <div>
             <h2 className="font-display text-3xl text-onyx">
               Confirm Your Booking
             </h2>
             <div className="card-frame mt-6 space-y-3 bg-ivory p-6">
-              <Row label="Service" value={service.name} />
+              <Row
+                label={selectedServices.length > 1 ? "Services" : "Service"}
+                value={selectedServices.map((s) => s.name).join(", ")}
+              />
               <Row
                 label="Barber"
                 value={
@@ -467,7 +500,7 @@ function Row({
       </span>
       <span
         className={
-          big ? "font-display text-2xl text-gold" : "font-medium text-onyx"
+          big ? "font-display text-2xl text-gold-ink" : "font-medium text-onyx"
         }
       >
         {value}

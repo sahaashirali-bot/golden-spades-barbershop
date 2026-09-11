@@ -12,7 +12,7 @@ type Confirmation = {
   end_at: string;
   total_amount_cents: number;
   payment_method: "online" | "in_shop";
-  service_name: string;
+  service_names: string[];
   barber_name: string;
 };
 
@@ -80,7 +80,7 @@ export default async function BookingSuccessPage({
     <div className="mx-auto max-w-lg px-4 py-24 text-center sm:px-6">
       <CheckCircle2
         size={56}
-        className={isPending ? "mx-auto text-gold" : "mx-auto text-felt"}
+        className={isPending ? "mx-auto text-gold-ink" : "mx-auto text-felt"}
       />
       <h1 className="mt-6 font-display text-4xl text-onyx">
         {isPending ? "Payment Processing" : "You're Booked"}
@@ -93,7 +93,10 @@ export default async function BookingSuccessPage({
 
       <div className="card-frame mt-8 space-y-3 bg-ivory p-6 text-left">
         <Row label="Confirmation #" value={confirmation.confirmation_code} />
-        <Row label="Service" value={confirmation.service_name} />
+        <Row
+          label={confirmation.service_names.length > 1 ? "Services" : "Service"}
+          value={confirmation.service_names.join(", ")}
+        />
         <Row label="Barber" value={confirmation.barber_name} />
         <Row label="Date" value={formatSlotDate(confirmation.start_at)} />
         <Row label="Time" value={formatSlotTime(confirmation.start_at)} />
