@@ -163,7 +163,7 @@ export function BookingWizard({
                   onClick={() => setServiceId(s.id)}
                   className={`card-frame flex items-center justify-between gap-3 bg-ivory p-4 text-left transition ${
                     serviceId === s.id
-                      ? "border-gold bg-cream-dim"
+                      ? "border-2 border-gold bg-gold/15 shadow-[0_0_0_3px_rgba(184,134,60,0.18)]"
                       : "hover:border-gold/60"
                   }`}
                 >
@@ -176,6 +176,11 @@ export function BookingWizard({
                   <span className="shrink-0 font-display text-xl text-gold">
                     {formatMoney(s.price_cents)}
                   </span>
+                  {serviceId === s.id && (
+                    <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-ivory bg-gold text-onyx">
+                      <Check size={14} strokeWidth={3} />
+                    </span>
+                  )}
                 </button>
               ))}
             </div>
@@ -193,7 +198,7 @@ export function BookingWizard({
                 onClick={() => setBarberId("any")}
                 className={`card-frame flex items-center gap-4 bg-ivory p-4 text-left transition ${
                   barberId === "any"
-                    ? "border-gold bg-cream-dim"
+                    ? "border-2 border-gold bg-gold/15 shadow-[0_0_0_3px_rgba(184,134,60,0.18)]"
                     : "hover:border-gold/60"
                 }`}
               >
@@ -204,6 +209,11 @@ export function BookingWizard({
                   <p className="font-display text-onyx">No Preference</p>
                   <p className="text-xs text-sable">First barber available</p>
                 </div>
+                {barberId === "any" && (
+                  <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-ivory bg-gold text-onyx">
+                    <Check size={14} strokeWidth={3} />
+                  </span>
+                )}
               </button>
               {barbers.map((b) => (
                 <button
@@ -211,7 +221,7 @@ export function BookingWizard({
                   onClick={() => setBarberId(b.id)}
                   className={`card-frame flex items-center gap-4 bg-ivory p-4 text-left transition ${
                     barberId === b.id
-                      ? "border-gold bg-cream-dim"
+                      ? "border-2 border-gold bg-gold/15 shadow-[0_0_0_3px_rgba(184,134,60,0.18)]"
                       : "hover:border-gold/60"
                   }`}
                 >
@@ -222,6 +232,11 @@ export function BookingWizard({
                     <p className="font-display text-onyx">{b.name}</p>
                     <p className="text-xs text-sable">{b.title}</p>
                   </div>
+                  {barberId === b.id && (
+                    <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-ivory bg-gold text-onyx">
+                      <Check size={14} strokeWidth={3} />
+                    </span>
+                  )}
                 </button>
               ))}
             </div>
@@ -320,7 +335,7 @@ export function BookingWizard({
                     onClick={() => setPaymentMethod("online")}
                     className={`card-frame bg-ivory p-4 text-left transition ${
                       paymentMethod === "online"
-                        ? "border-gold bg-cream-dim"
+                        ? "border-2 border-gold bg-gold/15 shadow-[0_0_0_3px_rgba(184,134,60,0.18)]"
                         : "hover:border-gold/60"
                     }`}
                   >
@@ -329,12 +344,17 @@ export function BookingWizard({
                       Card, secures your spot ·{" "}
                       {formatMoney(SHOP.cardFeeCents)} processing fee
                     </p>
+                    {paymentMethod === "online" && (
+                      <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-ivory bg-gold text-onyx">
+                        <Check size={14} strokeWidth={3} />
+                      </span>
+                    )}
                   </button>
                   <button
                     onClick={() => setPaymentMethod("in_shop")}
                     className={`card-frame bg-ivory p-4 text-left transition ${
                       paymentMethod === "in_shop"
-                        ? "border-gold bg-cream-dim"
+                        ? "border-2 border-gold bg-gold/15 shadow-[0_0_0_3px_rgba(184,134,60,0.18)]"
                         : "hover:border-gold/60"
                     }`}
                   >
@@ -342,6 +362,11 @@ export function BookingWizard({
                     <p className="mt-1 text-xs text-sable">
                       Cash or card when you arrive
                     </p>
+                    {paymentMethod === "in_shop" && (
+                      <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-ivory bg-gold text-onyx">
+                        <Check size={14} strokeWidth={3} />
+                      </span>
+                    )}
                   </button>
                 </div>
               </div>

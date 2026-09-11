@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --color-cream: #f8f1e0;
-  --color-cream-dim: #ece0c2;
-  --color-ivory: #fffcf4;
+  --color-cream: #eaddbc;
+  --color-cream-dim: #dac795;
+  --color-ivory: #fdf8ea;
   --color-felt: #0f3d2e;
   --color-felt-dark: #082720;
   --color-onyx: #1c1710;
-  --color-sable: #6e6250;
+  --color-sable: #59503e;
   --color-gold: #b8863c;
   --color-gold-bright: #e3bd6c;
 }
@@ -49,64 +49,74 @@ body {
   font-family: var(--font-display), ui-serif, serif;
 }
 
-/* Soft radial vignette — used on the dark felt hero instead of a grain overlay */
-.felt-vignette::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse at 50% 0%,
-    rgba(227, 189, 108, 0.16),
-    transparent 60%
-  );
+/*
+ * These live in Tailwind's "components" layer on purpose: unlayered CSS
+ * always wins over `@layer utilities` regardless of source order, which was
+ * silently blocking utility classes like `border-gold`/`bg-gold/10` from
+ * ever overriding `.card-frame`'s own border — the exact bug behind
+ * selected cards in the booking flow not looking selected.
+ */
+@layer components {
+  /* Soft radial vignette — used on the dark felt hero instead of a grain overlay */
+  .felt-vignette::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at 50% 0%,
+      rgba(227, 189, 108, 0.16),
+      transparent 60%
+    );
+  }
+
+  /* Thin gold rule used as a section divider instead of an animated barber-pole stripe */
+  .gold-rule {
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-gold) 15%,
+      var(--color-gold-bright) 50%,
+      var(--color-gold) 85%,
+      transparent
+    );
+  }
+
+  /* Card-style panel: soft rounded corners + a slim gold frame instead of sharp diagonal cuts */
+  .card-frame {
+    position: relative;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(184, 134, 60, 0.35);
+  }
+
+  /* Suit pip in the corner of a card-frame, like the index pip on a real playing card */
+  .suit-pip {
+    position: absolute;
+    top: 0.85rem;
+    left: 1rem;
+    font-family: var(--font-display), ui-serif, serif;
+    font-size: 0.8rem;
+    color: var(--color-gold);
+    opacity: 0.8;
+    line-height: 1;
+  }
+  .suit-pip.pip-br {
+    top: auto;
+    left: auto;
+    bottom: 0.85rem;
+    right: 1rem;
+    transform: rotate(180deg);
+  }
+
+  /* Slow ribbon ticker — restyled as a gold marquee rather than a spinning barber pole */
+  .ribbon-track {
+    display: flex;
+    width: max-content;
+    animation: ribbon-scroll 32s linear infinite;
+  }
 }
 
-/* Thin gold rule used as a section divider instead of an animated barber-pole stripe */
-.gold-rule {
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--color-gold) 15%,
-    var(--color-gold-bright) 50%,
-    var(--color-gold) 85%,
-    transparent
-  );
-}
-
-/* Card-style panel: soft rounded corners + a slim gold frame instead of sharp diagonal cuts */
-.card-frame {
-  position: relative;
-  border-radius: 1.25rem;
-  border: 1px solid rgba(184, 134, 60, 0.35);
-}
-
-/* Suit pip in the corner of a card-frame, like the index pip on a real playing card */
-.suit-pip {
-  position: absolute;
-  top: 0.85rem;
-  left: 1rem;
-  font-family: var(--font-display), ui-serif, serif;
-  font-size: 0.8rem;
-  color: var(--color-gold);
-  opacity: 0.8;
-  line-height: 1;
-}
-.suit-pip.pip-br {
-  top: auto;
-  left: auto;
-  bottom: 0.85rem;
-  right: 1rem;
-  transform: rotate(180deg);
-}
-
-/* Slow ribbon ticker — restyled as a gold marquee rather than a spinning barber pole */
-.ribbon-track {
-  display: flex;
-  width: max-content;
-  animation: ribbon-scroll 32s linear infinite;
-}
 @keyframes ribbon-scroll {
   from {
     transform: translateX(0);
