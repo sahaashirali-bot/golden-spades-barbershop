@@ -72,13 +72,24 @@ export function SiteFooter() {
       <div className="border-t border-cream/10">
         <div className="mx-auto max-w-6xl px-4 py-6 text-sm text-cream/70 sm:px-6">
           <p className="max-w-md">{SHOP.cancellationPolicy}</p>
-          <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-xs text-cream/70">
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 text-xs text-cream/70">
             <span>
               © {new Date().getFullYear()} {SHOP.name}
             </span>
-            <Link href="/admin/login" className="hover:text-cream">
-              Staff Login
-            </Link>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+              <Link href="/privacy" className="hover:text-cream">
+                Privacy
+              </Link>
+              <Link href="/terms" className="hover:text-cream">
+                Terms
+              </Link>
+              <Link href="/cookies" className="hover:text-cream">
+                Cookies
+              </Link>
+              <Link href="/admin/login" className="hover:text-cream">
+                Staff Login
+              </Link>
+            </div>
           </div>
         </div>
       </div>

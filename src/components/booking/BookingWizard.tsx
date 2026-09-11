@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { Scissors, Users, Check } from "lucide-react";
 import type { Barber, Service } from "@/lib/types";
 import {
@@ -441,6 +442,17 @@ export function BookingWizard({
             </div>
             <p className="mt-4 text-xs text-sable">
               {SHOP.cancellationPolicy}
+            </p>
+            <p className="mt-2 text-xs text-sable">
+              By booking, you agree to our{" "}
+              <Link href="/terms" className="text-gold-ink hover:underline">
+                Terms
+              </Link>{" "}
+              and{" "}
+              <Link href="/privacy" className="text-gold-ink hover:underline">
+                Privacy Policy
+              </Link>
+              .
             </p>
             {submitError && (
               <p className="mt-4 text-sm text-red-700">{submitError}</p>
