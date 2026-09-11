@@ -1,19 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --color-cream: #eaddbc;
-  --color-cream-dim: #dac795;
-  --color-ivory: #fdf8ea;
-  --color-felt: #0f3d2e;
-  --color-felt-dark: #082720;
-  --color-onyx: #1c1710;
-  --color-sable: #59503e;
-  --color-gold: #b8863c;
-  --color-gold-bright: #e3bd6c;
-  /* Deep bronze step of gold, for text/icons set directly on cream/ivory
-     surfaces — the base gold (#b8863c) is only ~2.4:1 against cream and
-     fails WCAG AA there; gold-ink hits 4.9:1+ while staying the same hue. */
-  --color-gold-ink: #654a21;
+  /* "Gilded" — a fully dark theme. cream/onyx keep their ORIGINAL ROLES
+     (cream = base surface, onyx = primary text) but swap which end of the
+     light/dark scale they sit on, so every existing bg-cream + text-onyx
+     pairing in the codebase inverts correctly on its own. felt is the
+     deepest band (hero/footer/CTA) and always pairs with onyx/sable text,
+     never with "cream" as a text color. */
+  --color-cream: #0d0904;
+  --color-cream-dim: #171009;
+  --color-ivory: #201507;
+  --color-felt: #050301;
+  --color-felt-dark: #020100;
+  --color-onyx: #f6ecd9;
+  --color-sable: #c7b494;
+  --color-gold: #c9963f;
+  --color-gold-bright: #f3cb72;
+  /* Deep bronze — reserved for large text/icons and gradient starts.
+     At small text sizes prefer --color-gold or --color-gold-bright,
+     both of which clear 6.7:1+ on every surface in this palette. */
+  --color-gold-ink: #a9711f;
 }
 
 @theme inline {
@@ -27,8 +33,9 @@
   --color-gold: var(--color-gold);
   --color-gold-bright: var(--color-gold-bright);
   --color-gold-ink: var(--color-gold-ink);
-  --font-display: var(--font-playfair);
+  --font-display: var(--font-fraunces);
   --font-body: var(--font-jost);
+  --font-mono: var(--font-plex-mono);
 }
 
 * {
@@ -47,22 +54,25 @@ body {
 
 ::selection {
   background: var(--color-gold);
-  color: var(--color-onyx);
+  color: var(--color-felt);
 }
 
 .font-display {
   font-family: var(--font-display), ui-serif, serif;
 }
 
+.font-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
 /*
  * These live in Tailwind's "components" layer on purpose: unlayered CSS
- * always wins over `@layer utilities` regardless of source order, which was
- * silently blocking utility classes like `border-gold`/`bg-gold/10` from
- * ever overriding `.card-frame`'s own border — the exact bug behind
- * selected cards in the booking flow not looking selected.
+ * always wins over `@layer utilities` regardless of source order, which
+ * would otherwise silently block utility classes like `border-gold` from
+ * overriding these.
  */
 @layer components {
-  /* Soft radial vignette — used on the dark felt hero instead of a grain overlay */
+  /* Soft radial glow behind the hero, gold instead of a photographic wash */
   .felt-vignette::before {
     content: "";
     position: absolute;
@@ -70,12 +80,12 @@ body {
     pointer-events: none;
     background: radial-gradient(
       ellipse at 50% 0%,
-      rgba(227, 189, 108, 0.16),
+      rgba(243, 203, 114, 0.14),
       transparent 60%
     );
   }
 
-  /* Thin gold rule used as a section divider instead of an animated barber-pole stripe */
+  /* Thin gradient rule used as a section divider */
   .gold-rule {
     height: 3px;
     background: linear-gradient(
@@ -88,11 +98,11 @@ body {
     );
   }
 
-  /* Card-style panel: soft rounded corners + a slim gold frame instead of sharp diagonal cuts */
+  /* Card-style panel: soft rounded corners + a slim gilded frame */
   .card-frame {
     position: relative;
     border-radius: 1.25rem;
-    border: 1px solid rgba(184, 134, 60, 0.35);
+    border: 1px solid rgba(201, 150, 63, 0.28);
   }
 
   /* Suit pip in the corner of a card-frame, like the index pip on a real playing card */
@@ -114,11 +124,43 @@ body {
     transform: rotate(180deg);
   }
 
-  /* Slow ribbon ticker — restyled as a gold marquee rather than a spinning barber pole */
+  /* Slow ribbon ticker */
   .ribbon-track {
     display: flex;
     width: max-content;
     animation: ribbon-scroll 32s linear infinite;
+  }
+
+  /* Bronze -> champagne gradient, for headline accents and price text */
+  .text-gilded {
+    background: linear-gradient(
+      100deg,
+      var(--color-gold-ink),
+      var(--color-gold-bright)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-gilded {
+    background: linear-gradient(
+      100deg,
+      var(--color-gold-ink),
+      var(--color-gold-bright)
+    );
+  }
+
+  /* Small tracked-uppercase label with a leading rule, e.g. section eyebrows */
+  .eyebrow-rule {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .eyebrow-rule::before {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: var(--color-gold);
   }
 }
 

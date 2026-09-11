@@ -143,9 +143,9 @@ export function BookingWizard({
               <div
                 className={`flex h-9 w-9 items-center justify-center rounded-full border font-display text-sm ${
                   i < step
-                    ? "border-gold bg-gold text-onyx"
+                    ? "border-gold bg-gold text-felt"
                     : i === step
-                      ? "border-gold text-gold-ink"
+                      ? "border-gold text-gold"
                       : "border-gold/20 text-sable"
                 }`}
               >
@@ -182,7 +182,7 @@ export function BookingWizard({
                   aria-pressed={serviceIds.includes(s.id)}
                   className={`card-frame relative flex items-center justify-between gap-3 bg-ivory p-4 text-left transition ${
                     serviceIds.includes(s.id)
-                      ? "border-2 border-gold bg-gold/15 shadow-[0_0_0_3px_rgba(184,134,60,0.18)]"
+                      ? "border-2 border-gold bg-gold/15 shadow-[0_0_0_3px_rgba(201,150,63,0.22)]"
                       : "hover:border-gold/60"
                   }`}
                 >
@@ -192,11 +192,11 @@ export function BookingWizard({
                       {formatDuration(s.duration_minutes)}
                     </p>
                   </div>
-                  <span className="shrink-0 font-display text-xl text-gold-ink">
+                  <span className="text-gilded shrink-0 font-display text-xl font-semibold">
                     {formatMoney(s.price_cents)}
                   </span>
                   {serviceIds.includes(s.id) && (
-                    <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-ivory bg-gold text-onyx">
+                    <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-ivory bg-gold text-felt">
                       <Check size={14} strokeWidth={3} />
                     </span>
                   )}
@@ -210,7 +210,7 @@ export function BookingWizard({
                   {selectedServices.length > 1 ? "s" : ""} selected ·{" "}
                   {formatDuration(totalDurationMinutes)}
                 </p>
-                <p className="font-display text-xl text-gold-ink">
+                <p className="text-gilded font-display text-xl font-semibold">
                   {formatMoney(servicesCents)}
                 </p>
               </div>
@@ -229,19 +229,19 @@ export function BookingWizard({
                 onClick={() => setBarberId("any")}
                 className={`card-frame flex items-center gap-4 bg-ivory p-4 text-left transition ${
                   barberId === "any"
-                    ? "border-2 border-gold bg-gold/15 shadow-[0_0_0_3px_rgba(184,134,60,0.18)]"
+                    ? "border-2 border-gold bg-gold/15 shadow-[0_0_0_3px_rgba(201,150,63,0.22)]"
                     : "hover:border-gold/60"
                 }`}
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/25 bg-cream">
-                  <Users size={22} className="text-gold-ink" />
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/25 bg-felt">
+                  <Users size={22} className="text-gold" />
                 </div>
                 <div>
                   <p className="font-display text-onyx">No Preference</p>
                   <p className="text-xs text-sable">First barber available</p>
                 </div>
                 {barberId === "any" && (
-                  <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-ivory bg-gold text-onyx">
+                  <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-ivory bg-gold text-felt">
                     <Check size={14} strokeWidth={3} />
                   </span>
                 )}
@@ -252,19 +252,19 @@ export function BookingWizard({
                   onClick={() => setBarberId(b.id)}
                   className={`card-frame flex items-center gap-4 bg-ivory p-4 text-left transition ${
                     barberId === b.id
-                      ? "border-2 border-gold bg-gold/15 shadow-[0_0_0_3px_rgba(184,134,60,0.18)]"
+                      ? "border-2 border-gold bg-gold/15 shadow-[0_0_0_3px_rgba(201,150,63,0.22)]"
                       : "hover:border-gold/60"
                   }`}
                 >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/25 bg-cream">
-                    <Scissors size={20} className="text-gold-ink" />
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/25 bg-felt">
+                    <Scissors size={20} className="text-gold" />
                   </div>
                   <div>
                     <p className="font-display text-onyx">{b.name}</p>
                     <p className="text-xs text-sable">{b.title}</p>
                   </div>
                   {barberId === b.id && (
-                    <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-ivory bg-gold text-onyx">
+                    <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-ivory bg-gold text-felt">
                       <Check size={14} strokeWidth={3} />
                     </span>
                   )}
@@ -285,7 +285,7 @@ export function BookingWizard({
                   onClick={() => setDate(d)}
                   className={`shrink-0 rounded-full border px-4 py-2 text-center transition ${
                     date === d
-                      ? "border-gold bg-gold text-onyx"
+                      ? "border-gold bg-gold text-felt"
                       : "border-gold/20 text-onyx/70 hover:border-gold/60"
                   }`}
                 >
@@ -311,7 +311,7 @@ export function BookingWizard({
                       onClick={() => setSelectedSlot(slot)}
                       className={`rounded-lg border px-3 py-2 font-display text-sm transition ${
                         selectedSlot?.start === slot.start
-                          ? "border-gold bg-gold text-onyx"
+                          ? "border-gold bg-gold text-felt"
                           : "border-gold/20 text-onyx/70 hover:border-gold/60"
                       }`}
                     >
@@ -358,7 +358,7 @@ export function BookingWizard({
               />
 
               <div className="pt-2">
-                <p className="font-display italic text-lg text-gold-ink">
+                <p className="font-display italic text-lg text-gold">
                   Payment
                 </p>
                 <div className="mt-3 grid gap-3 sm:grid-cols-2">
@@ -366,7 +366,7 @@ export function BookingWizard({
                     onClick={() => setPaymentMethod("online")}
                     className={`card-frame bg-ivory p-4 text-left transition ${
                       paymentMethod === "online"
-                        ? "border-2 border-gold bg-gold/15 shadow-[0_0_0_3px_rgba(184,134,60,0.18)]"
+                        ? "border-2 border-gold bg-gold/15 shadow-[0_0_0_3px_rgba(201,150,63,0.22)]"
                         : "hover:border-gold/60"
                     }`}
                   >
@@ -376,7 +376,7 @@ export function BookingWizard({
                       {formatMoney(SHOP.cardFeeCents)} processing fee
                     </p>
                     {paymentMethod === "online" && (
-                      <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-ivory bg-gold text-onyx">
+                      <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-ivory bg-gold text-felt">
                         <Check size={14} strokeWidth={3} />
                       </span>
                     )}
@@ -385,7 +385,7 @@ export function BookingWizard({
                     onClick={() => setPaymentMethod("in_shop")}
                     className={`card-frame bg-ivory p-4 text-left transition ${
                       paymentMethod === "in_shop"
-                        ? "border-2 border-gold bg-gold/15 shadow-[0_0_0_3px_rgba(184,134,60,0.18)]"
+                        ? "border-2 border-gold bg-gold/15 shadow-[0_0_0_3px_rgba(201,150,63,0.22)]"
                         : "hover:border-gold/60"
                     }`}
                   >
@@ -394,7 +394,7 @@ export function BookingWizard({
                       Cash or card when you arrive
                     </p>
                     {paymentMethod === "in_shop" && (
-                      <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-ivory bg-gold text-onyx">
+                      <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-ivory bg-gold text-felt">
                         <Check size={14} strokeWidth={3} />
                       </span>
                     )}
@@ -445,11 +445,11 @@ export function BookingWizard({
             </p>
             <p className="mt-2 text-xs text-sable">
               By booking, you agree to our{" "}
-              <Link href="/terms" className="text-gold-ink hover:underline">
+              <Link href="/terms" className="text-gold hover:underline">
                 Terms
               </Link>{" "}
               and{" "}
-              <Link href="/privacy" className="text-gold-ink hover:underline">
+              <Link href="/privacy" className="text-gold hover:underline">
                 Privacy Policy
               </Link>
               .
@@ -474,7 +474,7 @@ export function BookingWizard({
           <button
             onClick={() => setStep((s) => s + 1)}
             disabled={!canContinue[step]}
-            className="rounded-full bg-felt px-8 py-3 font-display italic text-cream transition hover:bg-felt-dark disabled:cursor-not-allowed disabled:opacity-30"
+            className="bg-gilded rounded-full px-8 py-3 font-display italic text-felt transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-30"
           >
             Continue →
           </button>
@@ -482,7 +482,7 @@ export function BookingWizard({
           <button
             onClick={handleSubmit}
             disabled={submitting}
-            className="rounded-full bg-felt px-8 py-3 font-display italic text-cream transition hover:bg-felt-dark disabled:opacity-50"
+            className="bg-gilded rounded-full px-8 py-3 font-display italic text-felt transition hover:opacity-90 disabled:opacity-50"
           >
             {submitting
               ? "Processing…"
@@ -512,7 +512,9 @@ function Row({
       </span>
       <span
         className={
-          big ? "font-display text-2xl text-gold-ink" : "font-medium text-onyx"
+          big
+            ? "text-gilded font-display text-2xl font-semibold"
+            : "font-medium text-onyx"
         }
       >
         {value}

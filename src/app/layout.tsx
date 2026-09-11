@@ -1,19 +1,28 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Jost } from "next/font/google";
+import { Fraunces, Jost, IBM_Plex_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { StickyBookBar } from "@/components/StickyBookBar";
 import { LocalBusinessSchema } from "@/components/LocalBusinessSchema";
 import { PHOTOS } from "@/lib/photos";
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
 });
 
 const jost = Jost({
   variable: "--font-jost",
   subsets: ["latin"],
+});
+
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -53,13 +62,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${jost.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${jost.variable} ${plexMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-cream text-onyx">
+      <body className="min-h-full flex flex-col bg-cream text-onyx pb-20">
         <LocalBusinessSchema />
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        <StickyBookBar />
       </body>
     </html>
   );

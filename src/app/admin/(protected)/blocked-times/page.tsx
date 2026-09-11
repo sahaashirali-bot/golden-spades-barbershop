@@ -75,7 +75,7 @@ export default async function BlockedTimesPage() {
         </label>
         <button
           type="submit"
-          className="sm:col-span-2 rounded-full bg-felt px-6 py-3 font-display italic text-cream transition hover:bg-felt-dark"
+          className="bg-gilded sm:col-span-2 rounded-full px-6 py-3 font-display italic text-felt transition hover:opacity-90"
         >
           Add Block
         </button>

@@ -73,7 +73,7 @@ export default async function AdminDashboardPage() {
                     b.status === "confirmed"
                       ? "bg-felt/15 text-felt"
                       : b.status === "pending_payment"
-                        ? "bg-gold/20 text-gold-ink"
+                        ? "bg-gold/20 text-gold"
                         : "bg-cream-dim text-sable"
                   }`}
                 >
@@ -90,7 +90,7 @@ export default async function AdminDashboardPage() {
 
       <Link
         href="/admin/bookings"
-        className="mt-6 inline-block text-sm text-gold-ink hover:underline"
+        className="mt-6 inline-block text-sm text-gold hover:underline"
       >
         View all bookings →
       </Link>

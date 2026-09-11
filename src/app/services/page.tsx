@@ -24,7 +24,7 @@ export default async function ServicesPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
-      <p className="font-display italic text-lg text-gold-ink">Price List</p>
+      <p className="font-display italic text-lg text-gold">Price List</p>
       <h1 className="mt-3 font-display text-5xl text-onyx sm:text-6xl">
         The Menu
       </h1>
@@ -35,7 +35,7 @@ export default async function ServicesPage() {
 
       {categories.map((cat) => (
         <div key={cat} className="mt-12">
-          <h2 className="font-display text-xl uppercase tracking-widest text-gold-ink">
+          <h2 className="font-display text-xl uppercase tracking-widest text-gold">
             {CATEGORY_LABELS[cat] ?? cat}
           </h2>
           <div className="mt-2">

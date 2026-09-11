@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function CookiesPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-      <p className="font-display italic text-lg text-gold-ink">Legal</p>
+      <p className="font-display italic text-lg text-gold">Legal</p>
       <h1 className="mt-3 font-display text-4xl text-onyx sm:text-5xl">
         Cookies Policy
       </h1>
@@ -68,7 +68,7 @@ export default function CookiesPage() {
             Reach us at{" "}
             <a
               href={`mailto:${SHOP.email}`}
-              className="text-gold-ink hover:underline"
+              className="text-gold hover:underline"
             >
               {SHOP.email}
             </a>

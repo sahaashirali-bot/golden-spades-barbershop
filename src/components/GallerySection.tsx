@@ -14,7 +14,10 @@ export function GallerySection() {
   return (
     <section className="border-t border-gold/15 bg-cream-dim">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <h2 className="font-display text-4xl text-onyx sm:text-5xl">
+        <p className="eyebrow-rule font-mono text-xs uppercase tracking-[0.14em] text-sable">
+          Portfolio
+        </p>
+        <h2 className="mt-3 font-display text-4xl text-onyx sm:text-5xl">
           Recent Work
         </h2>
         <p className="mt-3 max-w-lg text-sable">

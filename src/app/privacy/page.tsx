@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-      <p className="font-display italic text-lg text-gold-ink">Legal</p>
+      <p className="font-display italic text-lg text-gold">Legal</p>
       <h1 className="mt-3 font-display text-4xl text-onyx sm:text-5xl">
         Privacy Policy
       </h1>
@@ -26,7 +26,7 @@ export default function PrivacyPage() {
             reach us any time at{" "}
             <a
               href={`mailto:${SHOP.email}`}
-              className="text-gold-ink hover:underline"
+              className="text-gold hover:underline"
             >
               {SHOP.email}
             </a>{" "}
@@ -89,7 +89,7 @@ export default function PrivacyPage() {
           <p className="mt-2 leading-relaxed text-sable">
             This site does not use advertising or analytics cookies. See
             our{" "}
-            <Link href="/cookies" className="text-gold-ink hover:underline">
+            <Link href="/cookies" className="text-gold hover:underline">
               Cookies Policy
             </Link>{" "}
             for the full detail.
@@ -103,7 +103,7 @@ export default function PrivacyPage() {
             hold about you at any time — just email{" "}
             <a
               href={`mailto:${SHOP.email}`}
-              className="text-gold-ink hover:underline"
+              className="text-gold hover:underline"
             >
               {SHOP.email}
             </a>

@@ -28,21 +28,21 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-felt text-cream">
+      <section className="relative overflow-hidden bg-felt text-onyx">
         <div className="felt-vignette relative">
           <div className="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 md:grid-cols-[1.2fr_1fr] md:py-28">
             <div>
-              <p className="font-display italic text-lg tracking-wide text-gold-bright">
-                Houston&apos;s Golden Chair
+              <p className="eyebrow-rule font-mono text-xs uppercase tracking-[0.14em] text-sable">
+                Houston, TX · Appointment or Walk-In
               </p>
 
-              <h1 className="mt-4 font-display text-5xl leading-[1.05] text-cream sm:text-6xl md:text-7xl">
+              <h1 className="mt-5 font-display text-5xl leading-[1.05] text-onyx sm:text-6xl md:text-7xl">
                 Sharp Cuts,
                 <br />
-                <span className="text-gold-bright">Royal</span> Treatment.
+                <span className="text-gilded font-semibold">Modern</span> Craft.
               </h1>
 
-              <p className="mt-6 max-w-md text-base text-cream/75">
+              <p className="mt-6 max-w-md text-base text-sable">
                 Precision fades, hot towel shaves, and freestyle braids from
                 Lupe — rated 5.0 by Houston. Pick a service, pick a time, and
                 walk out looking like the house favorite.
@@ -50,13 +50,13 @@ export default async function HomePage() {
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
                   href="/book"
-                  className="rounded-full bg-gold px-8 py-4 font-display italic text-lg tracking-wide text-onyx transition hover:bg-gold-bright"
+                  className="bg-gilded rounded-full px-8 py-4 font-display italic text-lg tracking-wide text-felt transition hover:opacity-90"
                 >
                   Book Your Cut
                 </Link>
                 <a
                   href={SHOP.phoneHref}
-                  className="rounded-full border border-cream/30 px-8 py-4 font-display italic text-lg tracking-wide text-cream transition hover:border-cream"
+                  className="rounded-full border border-onyx/25 px-8 py-4 font-display italic text-lg tracking-wide text-onyx transition hover:border-onyx/60"
                 >
                   Call the Shop
                 </a>
@@ -87,7 +87,7 @@ export default async function HomePage() {
           {[...RIBBON_ITEMS, ...RIBBON_ITEMS].map((item, i) => (
             <span
               key={i}
-              className="mx-4 font-display italic text-sm tracking-wide text-onyx"
+              className="mx-4 font-display italic text-sm tracking-wide text-felt"
             >
               {item} ♠
             </span>
@@ -99,21 +99,21 @@ export default async function HomePage() {
       <section className="border-b border-gold/15 bg-cream-dim">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-10 sm:grid-cols-3 sm:px-6">
           <div className="flex items-center gap-4">
-            <Star className="shrink-0 text-gold-ink" size={28} />
+            <Star className="shrink-0 text-gold" size={28} />
             <div>
               <p className="font-display text-lg text-onyx">5.0 Rating</p>
               <p className="text-sm text-sable">12 Google reviews</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <Clock className="shrink-0 text-gold-ink" size={28} />
+            <Clock className="shrink-0 text-gold" size={28} />
             <div>
               <p className="font-display text-lg text-onyx">6 Days</p>
               <p className="text-sm text-sable">Tue–Sat, closed Sun &amp; Mon</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <MapPin className="shrink-0 text-gold-ink" size={28} />
+            <MapPin className="shrink-0 text-gold" size={28} />
             <div>
               <p className="font-display text-lg text-onyx">Houston</p>
               <p className="text-sm text-sable">El Camino Real, Arbor Square</p>
@@ -125,12 +125,17 @@ export default async function HomePage() {
       {/* Services */}
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <h2 className="font-display text-4xl text-onyx sm:text-5xl">
-            The Menu
-          </h2>
+          <div>
+            <p className="eyebrow-rule font-mono text-xs uppercase tracking-[0.14em] text-sable">
+              Our Services
+            </p>
+            <h2 className="mt-3 font-display text-4xl text-onyx sm:text-5xl">
+              The Menu
+            </h2>
+          </div>
           <Link
             href="/services"
-            className="text-sm font-medium uppercase tracking-wider text-gold-ink hover:underline"
+            className="text-sm font-medium uppercase tracking-wider text-gold hover:underline"
           >
             Full price list →
           </Link>
@@ -145,7 +150,10 @@ export default async function HomePage() {
       {/* Barbers */}
       <section className="border-t border-gold/15 bg-cream-dim">
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <h2 className="font-display text-4xl text-onyx sm:text-5xl">
+          <p className="eyebrow-rule font-mono text-xs uppercase tracking-[0.14em] text-sable">
+            The Chair
+          </p>
+          <h2 className="mt-3 font-display text-4xl text-onyx sm:text-5xl">
             Meet Your Barber
           </h2>
           <p className="mt-3 max-w-lg text-sable">
@@ -164,7 +172,10 @@ export default async function HomePage() {
 
       {/* Reviews */}
       <section id="reviews" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <h2 className="font-display text-4xl text-onyx sm:text-5xl">
+        <p className="eyebrow-rule font-mono text-xs uppercase tracking-[0.14em] text-sable">
+          Reviews
+        </p>
+        <h2 className="mt-3 font-display text-4xl text-onyx sm:text-5xl">
           What People Say
         </h2>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -175,17 +186,20 @@ export default async function HomePage() {
       </section>
 
       {/* Final CTA */}
-      <section className="bg-felt text-cream">
+      <section className="bg-felt text-onyx">
         <div className="mx-auto max-w-6xl px-4 py-16 text-center sm:px-6">
-          <h2 className="font-display text-4xl text-cream sm:text-5xl">
-            Ready When You Are
+          <p className="eyebrow-rule justify-center font-mono text-xs uppercase tracking-[0.14em] text-sable">
+            Ready?
+          </p>
+          <h2 className="mt-3 font-display text-4xl text-onyx sm:text-5xl">
+            Book Your Next <span className="text-gilded font-semibold">Cut</span>
           </h2>
-          <p className="mt-3 text-cream/75">
+          <p className="mt-3 text-sable">
             Pick your service, pick your time — takes less than a minute.
           </p>
           <Link
             href="/book"
-            className="mt-8 inline-block rounded-full bg-gold px-10 py-4 font-display italic text-lg tracking-wide text-onyx transition hover:bg-gold-bright"
+            className="bg-gilded mt-8 inline-block rounded-full px-10 py-4 font-display italic text-lg tracking-wide text-felt transition hover:opacity-90"
           >
             Book Now
           </Link>

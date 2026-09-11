@@ -34,7 +34,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium uppercase tracking-wide text-onyx/70 transition hover:text-gold-ink"
+              className="text-sm font-medium uppercase tracking-wide text-onyx/70 transition hover:text-gold-bright"
             >
               {item.label}
             </Link>
@@ -44,7 +44,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-3">
           <Link
             href="/book"
-            className="hidden rounded-full bg-felt px-6 py-2.5 font-display italic text-sm tracking-wide text-cream transition hover:bg-felt-dark sm:block"
+            className="bg-gilded hidden rounded-full px-6 py-2.5 font-display italic text-sm tracking-wide text-felt transition hover:opacity-90 sm:block"
           >
             Book Now
           </Link>
@@ -81,7 +81,7 @@ export function SiteHeader() {
             ))}
             <Link
               href="/book"
-              className="mt-2 rounded-full bg-felt px-5 py-3 text-center font-display italic tracking-wide text-cream"
+              className="bg-gilded mt-2 rounded-full px-5 py-3 text-center font-display italic tracking-wide text-felt"
             >
               Book Now
             </Link>

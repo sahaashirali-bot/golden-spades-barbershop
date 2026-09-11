@@ -40,7 +40,7 @@ export default async function BarberPage({
           <h1 className="font-display text-4xl text-onyx sm:text-5xl">
             {barber.name}
           </h1>
-          <p className="mt-1 text-sm uppercase tracking-wider text-gold-ink">
+          <p className="mt-1 text-sm uppercase tracking-wider text-gold">
             {barber.title}
           </p>
           {barber.rating ? (
@@ -58,7 +58,7 @@ export default async function BarberPage({
           <p className="mt-5 max-w-xl text-onyx/80">{barber.bio}</p>
           <Link
             href={`/book?barber=${barber.slug}`}
-            className="mt-6 inline-block rounded-full bg-felt px-8 py-3 font-display italic text-lg tracking-wide text-cream transition hover:bg-felt-dark"
+            className="bg-gilded mt-6 inline-block rounded-full px-8 py-3 font-display italic text-lg tracking-wide text-felt transition hover:opacity-90"
           >
             Book with {barber.name.split(" ")[0]}
           </Link>

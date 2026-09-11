@@ -66,7 +66,7 @@ export default async function BookingSuccessPage({
         </p>
         <Link
           href="/book"
-          className="mt-8 inline-block rounded-full bg-felt px-8 py-3 font-display italic text-cream"
+          className="bg-gilded mt-8 inline-block rounded-full px-8 py-3 font-display italic text-felt"
         >
           Back to Booking
         </Link>
@@ -80,7 +80,7 @@ export default async function BookingSuccessPage({
     <div className="mx-auto max-w-lg px-4 py-24 text-center sm:px-6">
       <CheckCircle2
         size={56}
-        className={isPending ? "mx-auto text-gold-ink" : "mx-auto text-felt"}
+        className={isPending ? "mx-auto text-gold" : "mx-auto text-gold-bright"}
       />
       <h1 className="mt-6 font-display text-4xl text-onyx">
         {isPending ? "Payment Processing" : "You're Booked"}
@@ -107,7 +107,7 @@ export default async function BookingSuccessPage({
 
       <Link
         href="/"
-        className="mt-8 inline-block rounded-full bg-felt px-8 py-3 font-display italic text-cream transition hover:bg-felt-dark"
+        className="bg-gilded mt-8 inline-block rounded-full px-8 py-3 font-display italic text-felt transition hover:opacity-90"
       >
         Back to Home
       </Link>

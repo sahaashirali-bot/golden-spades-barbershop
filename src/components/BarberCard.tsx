@@ -23,12 +23,12 @@ export function BarberCard({ barber }: { barber: Barber }) {
           />
         ) : (
           <div className="flex h-full items-center justify-center text-sable">
-            <Scissors size={40} className="transition group-hover:text-gold-ink" />
+            <Scissors size={40} className="transition group-hover:text-gold" />
           </div>
         )}
       </div>
       <h3 className="mt-5 font-display text-2xl text-onyx">{barber.name}</h3>
-      <p className="text-sm uppercase tracking-wider text-gold-ink">
+      <p className="text-sm uppercase tracking-wider text-gold">
         {barber.title}
       </p>
       {barber.years_experience && (
@@ -46,7 +46,7 @@ export function BarberCard({ barber }: { barber: Barber }) {
           New to the shop
         </p>
       )}
-      <span className="mt-4 inline-block text-sm font-medium text-gold-ink group-hover:underline">
+      <span className="mt-4 inline-block text-sm font-medium text-gold group-hover:underline">
         Book with {barber.name.split(" ")[0]} →
       </span>
     </Link>

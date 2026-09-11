@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-      <p className="font-display italic text-lg text-gold-ink">Legal</p>
+      <p className="font-display italic text-lg text-gold">Legal</p>
       <h1 className="mt-3 font-display text-4xl text-onyx sm:text-5xl">
         Terms &amp; Conditions
       </h1>
@@ -93,12 +93,12 @@ export default function TermsPage() {
             Questions about these terms, or anything else, reach us at{" "}
             <a
               href={`mailto:${SHOP.email}`}
-              className="text-gold-ink hover:underline"
+              className="text-gold hover:underline"
             >
               {SHOP.email}
             </a>{" "}
             or {SHOP.phone}. See also our{" "}
-            <Link href="/privacy" className="text-gold-ink hover:underline">
+            <Link href="/privacy" className="text-gold hover:underline">
               Privacy Policy
             </Link>
             .
